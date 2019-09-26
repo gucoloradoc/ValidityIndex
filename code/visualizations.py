@@ -17,10 +17,12 @@ for attribute in attributes:
     ax.figure.savefig('images/exploratory/'+attribute+'_log.pdf')
 
 ## Plotting the results of VIC
+with open("output/results_VIC_example.list",'rb') as file:
+    results_VIC=pickle.load(file)
 import matplotlib.pyplot as plt
 x_ax=[i[0] for i in results_VIC]
 y_ax=[i[1] for i in results_VIC]
-error_ax=[i[2] for i in results_VIC]
+error_ax=[i[2][1] for i in results_VIC]
 plt.errorbar(x_ax,y_ax,yerr=error_ax,linestyle='',marker='o', markerfacecolor='orange')
 #plt.plot(x_ax,y_ax,'bo')
 plt.ylabel('ROC-AUC')
