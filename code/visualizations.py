@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import pickle
 
 base_df= pd.read_csv('data/all_data.csv')
 base_df['attribute']=base_df['attribute'].astype('category')
