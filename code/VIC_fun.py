@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import threading
 from sklearn import svm
 from sklearn.naive_bayes import GaussianNB
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis as LDAclass
@@ -8,7 +9,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import cross_val_score
 from sklearn import metrics
 
-def VIC(X,y,classifiers,kgroups,metric='roc_auc',**kwargs):
+def VIC(X,y,classifiers,kgroups,metric='roc_auc',n_jobs=None, **kwargs):
     """VIC is a function to calculate the validity index for the y target, usign the
     specified classifier. The kwargs are the corresponding parameters required for 
     each of the classifiers.
@@ -39,7 +40,7 @@ def VIC(X,y,classifiers,kgroups,metric='roc_auc',**kwargs):
             raise NameError('Classifier '+classifier+' not available for VIC, or check the spelling')
         clf.fit(X,y)
         clfs.append(clf)
-        scores = cross_val_score(clf, X, y, cv=int(kgroups), scoring=metric)
+        scores = cross_val_score(clf, X, y, cv=int(kgroups), scoring=metric,n_jobs=n_jobs)
         print("Accuracy for "+classifier +": {} (+/- {})".format(round(scores.mean(),ndigits=3), round(scores.std(),ndigits=3)))
         scores_list.append(scores)
         out.append([scores.mean(),scores.std(), classifier])
