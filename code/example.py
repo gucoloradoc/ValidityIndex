@@ -12,7 +12,7 @@ dataset.insert(column='cluster_id', value=0, loc=len(dataset.columns))
 np.random.seed(2500)
 kgroups=10 #
 n_jobs=4 #Multithread parameter
-r=np.random.choice(range(kgroups+1,199-kgroups),50, replace=False) #Generates an array 
+r=np.random.choice(range(kgroups+1,199-kgroups),50, replace=False) #Generates an array of valid positions to divide the top 200 universities in to groups
 
 #Calling my classifiers, and setting their parameters
 classifiers_parameters={
