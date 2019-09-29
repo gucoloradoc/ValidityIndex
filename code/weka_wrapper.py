@@ -1,7 +1,7 @@
 import weka.core.jvm as jvm
 from weka.core.converters import Loader
 from weka.filters import Filter
-jvm.start(system_cp=True, packages=True, max_heap_size="512m") #Remember to initialize this CLASSPATH env var
+#jvm.start(system_cp=True, packages=True, max_heap_size="512m") #Remember to initialize this CLASSPATH env var
 
 def weka_bayesnet(filearffpath='data/datatobayes.arff'):
     """Simple calling of the bayesian network from python.

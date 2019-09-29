@@ -33,8 +33,7 @@ classifiers_parameters={
     'BayesianNet':{},
     'LDA':{}
 }
-#classifiers=['svm','naive_bayes','LDA','RandomForest']
-classifiers=['BayesianNet']
+classifiers=['svm','naive_bayes','LDA','RandomForest', 'BayesianNet']
 results_VIC=[] #Empyty list to store the results
 att_arff=[(i, 'REAL') for i in dataset.columns.values[1:-1]]
 att_arff.append(('cluster_id',['-1','1']))
