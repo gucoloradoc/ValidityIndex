@@ -35,6 +35,9 @@ def VIC(X,y,classifiers,kgroups,metric='roc_auc',n_jobs=None, **kwargs):
         elif classifier=='BayesianNet':
             #Do something
             print('Trabajando para agregar Bayesian net')
+            from weka_wrapper import weka_bayesnet #Calling my defined function
+            bayes_out=weka_bayesnet()
+            out.append([bayes_out,0,'BayesianNet'])
             continue
         else:
             raise NameError('Classifier '+classifier+' not available for VIC, or check the spelling')

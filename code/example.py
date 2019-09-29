@@ -2,6 +2,8 @@ import pandas as pd
 import numpy as np
 import sys
 import arff
+import weka.core.jvm as jvm #Bayes net and other weka classifiers and functions
+jvm.start(system_cp=True, packages=True, max_heap_size="512m") #Remember to initialize this CLASSPATH env var
 
 sys.path.append('code/') #Folder with the scripts, working directory the main directory
 from VIC_fun import VIC #Our created VIC function
@@ -31,7 +33,8 @@ classifiers_parameters={
     'BayesianNet':{},
     'LDA':{}
 }
-classifiers=['svm','naive_bayes','LDA','RandomForest']
+#classifiers=['svm','naive_bayes','LDA','RandomForest']
+classifiers=['BayesianNet']
 results_VIC=[] #Empyty list to store the results
 att_arff=[(i, 'REAL') for i in dataset.columns.values[1:-1]]
 att_arff.append(('cluster_id',['-1','1']))
@@ -52,7 +55,8 @@ for cut in r:
         to_arffdump={'relation':'all_data', 'attributes':att_arff,'data':list(np.column_stack((X,np.array([str(j) for j in y]))))}
         #to_arffdump={'relation':'all_data', 'attributes':att_arff,'data':list(X)}
         with open('data/datatobayes.arff','w') as farff:
-            arff.dump(to_arffdump,farff)
+            arff.dump(to_arffdump,farff)  
     temp=[item for item in VIC(X_train,y_train,classifiers,kgroups,metric='roc_auc',n_jobs=n_jobs,**classifiers_parameters)]
     temp.insert(0,cut)
     results_VIC.append(temp)
+jvm.stop()
