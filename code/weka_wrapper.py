@@ -5,10 +5,10 @@ jvm.start() #Remember to initialize this
 
 #Preparing the data
 loader = Loader(classname="weka.core.converters.ArffLoader")
-data = loader.load_file('data/Full.arff')
-remove = Filter(classname="weka.filters.unsupervised.attribute.Remove", options=["-R", "first"])
-remove.inputformat(data)
-filtered=remove.filter(data)
+data = loader.load_file('data/datatobayes.arff')
+#remove = Filter(classname="weka.filters.unsupervised.attribute.Remove", options=["-R", "first"])
+#remove.inputformat(data)
+filtered=data #remove.filter(data)
 
 #Classifier test
 from weka.classifiers import Classifier, Evaluation
@@ -20,5 +20,6 @@ evaluation.crossvalidate_model(classifier, filtered, 10, Random(42))
 evaluation.area_under_roc(class_index=0) #ROC
 print(evaluation.summary())
 
+#classifier.options to obtain the parameters of the classifier
 
 jvm.stop()
