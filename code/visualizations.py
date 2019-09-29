@@ -18,7 +18,7 @@ import pickle
 #    ax.figure.savefig('images/exploratory/'+attribute+'_log.pdf')
 
 ## Plotting the results of VIC
-with open("output/results_VIC_example.list",'rb') as file:
+with open("output/results_VIC.list",'rb') as file:
     results_VIC=pickle.load(file)
 import matplotlib.pyplot as plt
 x_ax=[i[0] for i in results_VIC]
