@@ -14,7 +14,7 @@ filtered=remove.filter(data)
 from weka.classifiers import Classifier, Evaluation
 from weka.core.classes import Random
 filtered.class_is_last()
-classifier = Classifier(classname="weka.classifiers.trees.J48", options=["-C", "0.3"])
+classifier = Classifier(classname="weka.classifiers.bayes.net") #options=["-C", "0.3"]
 evaluation = Evaluation(filtered)
 evaluation.crossvalidate_model(classifier, filtered, 10, Random(42))
 evaluation.area_under_roc(class_index=0) #ROC
