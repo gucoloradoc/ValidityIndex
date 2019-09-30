@@ -41,9 +41,58 @@ max_value, ['mean_kfold_metric', 'sd_metric', 'classifier_name' ], matrix= VIC(X
 
 ![ROC-AUC for example](images/VIC_results.png)
 
-| Tables        | Are           | Cool  |
-| ------------- |:-------------:| -----:|
-| col 3 is      | right-aligned | $1600 |
-| col 2 is      | centered      |   $12 |
-| zebra stripes | are neat      |    $1 |
+|r   | max ROC-AUC   |Max Classifier|
+|--- | --------  |------------|
+| 16 | 0.935819  |RandomForest|
+|117 | 0.801157  |RandomForest|
+|112 | 0.791204  |RandomForest|
+|102 | 0.827702  |RandomForest|
+| 80 | 0.88427   |RandomForest|
+|121 | 0.81254   |RandomForest|
+| 20 | 0.932244  |RandomForest|
+| 77 | 0.84715   |RandomForest|
+| 72 | 0.855678  |RandomForest|
+|116 | 0.800921  |RandomForest|
+|111 | 0.797706  |RandomForest|
+| 61 | 0.86825   |RandomForest|
+| 26 | 0.894063  |RandomForest|
+|188 | 0.79152   |svm|
+|100 | 0.843091  |svm|
+| 35 | 0.894133  |RandomForest|
+| 90 | 0.837121  |RandomForest|
+|168 | 0.761642  |RandomForest|
+| 27 | 0.902505  |LDA|
+| 86 | 0.832828  |RandomForest|
+|136 | 0.811571  |RandomForest|
+|131 | 0.820984  |RandomForest|
+|113 | 0.786027  |RandomForest|
+|166 | 0.751471  |RandomForest|
+|104 | 0.822475  |RandomForest|
+|145 | 0.810698  |RandomForest|
+| 71 | 0.869986  |RandomForest|
+|144 | 0.830635  |RandomForest|
+| 43 | 0.92651   |RandomForest|
+|127 | 0.824565  |RandomForest|
+|181 | 0.71345   |svm         |
+| 41 | 0.911615  |RandomForest|
+|179 | 0.686111  |svm         |
+| 21 | 0.940387  |RandomForest|
+| 55 | 0.864246  |RandomForest|
+| 93 | 0.821465  |RandomForest|
+|160 | 0.714338  |RandomForest|
+|161 | 0.730852  |RandomForest|
+|141 | 0.835595  |RandomForest|
+| 84 | 0.860143  |RandomForest|
+| 48 | 0.911083  |RandomForest|
+| 52 | 0.902238  |RandomForest|
+|110 | 0.793035  |RandomForest|
+| 56 | 0.872183  |RandomForest|
+| 24 | 0.896514  |RandomForest|
+|119 | 0.804688  |RandomForest|
+|176 | 0.718246  |RandomForest|
+| 70 | 0.885554  |RandomForest|
+|175 | 0.723557  |RandomForest|
+| 81 | 0.879493  |RandomForest|
+---  --------  ------------
+
 [1] Rodríguez, J., Medina-Pérez, M. A., Gutierrez-Rodríguez, A. E., Monroy, R., & Terashima-Marín, H. (2018). Cluster validation using an ensemble of supervised classifiers. Knowledge-Based Systems, 145, 134–144. https://doi.org/10.1016/j.knosys.2018.01.010.
