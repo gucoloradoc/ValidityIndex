@@ -1,6 +1,5 @@
 # VIC Validity index 
-This repository describes the use and implementation of internal cluster validation by using ensemble supervised classifiers, as reported in [1]. Internal metrics provide a uselful method to evaluate how appropiate is the
-division expresed in a class atribbute **y** given or found (clustering), with a finite set of attributes **X** of the clustered instances, without comparing them against an external body of data.
+This repository describes the use and implementation of internal cluster validation by using ensemble supervised classifiers, as reported in [1]. Internal metrics provide a useful method to evaluate how appropriate is the division expressed in a class attribute **y** given or found (clustering), with a finite set of attributes **X** of the clustered instances, without comparing them against an external body of data.
 
 ```python
 from VIC_fun import VIC
@@ -13,8 +12,8 @@ classifiers=['svm','naive_bayes','LDA','RandomForest','BayesianNet']
 ```
 The BayesianNet classifier is implemented using the *python-weka-wrapper3*, thus to implement this classifier in your evaluation you need to properly configure the environment to use javabridge.
 
-### Classifiers tunning
-In order to pass the hyperparameters to each of the classifiers, they shall be passed in a dict format with the following sintaxis:
+### Classifiers tuning
+In order to pass the hyperparameters to each of the classifiers, they shall be passed in a dict format with the following syntaxis:
 
 ```python
 classifiers_parameters={
@@ -34,17 +33,17 @@ classifiers_parameters={
 And the parameters for each of them can be found in the sklearn documentation.
 
 ### Cross-validation
-K fold cross-validation is used, defining the parameter **kgroups**, to determine the best performing algorithm on a partition evaluation and its implementation can be threaded using the paramater **n_jobs** in VIC. Finally we can choose from different metrics to perform the validation through the **metric** parameter, such detailed options can be found [here](https://scikit-learn.org/stable/modules/classes.html#sklearn-metrics-metrics).
+K fold cross-validation is used, defining the parameter **kgroups**, to determine the best performing algorithm on a partition evaluation and its implementation can be threaded using the parameter **n_jobs** in VIC. Finally we can choose from different metrics to perform the validation through the **metric** parameter, such detailed options can be found [here](https://scikit-learn.org/stable/modules/classes.html#sklearn-metrics-metrics).
 Calling the function generates a tuple with three outputs, the maximum value of the k-fold mean metric for the evaluated classifiers, an array with ``['mean_kfold_metric', 'sd_metric', 'classifier_name' ]`` of the best classifier for the partition and a matrix with all the values for all the classifiers in case it is required.
 ```python
 max_value, ['mean_kfold_metric', 'sd_metric', 'classifier_name' ], matrix= VIC(X,y,...)
 ```
 
 ## Example: Best division for 200 top QS universities using VIC
-Here we are going to analyze how appropiate is to divide the top 200 universities, taking as the main criteria to do such division the position in the QS ranking of 2019. In order to evaluate such division trough the implementation of VIC, a set of 312 attributes related with the scientific production, as number of articles, citations, and areas of research of the last five years are going to be the predictors used in the ensembled classifiers. 
-We are going to divide the universities in two classes from a certain treshold. For example, if the threshold is 100, all the universities above 100 are going to be in one class and all the others are going to be in the second class. 
-Once such division is made, the VIC is implemented in the partition and the resulting ROC-AUC from kfold cross-validation, as well as the standard deviation of the cross validation is ploted and reported in the following plot and table.
-This process is done for 50 cut point and the VIC is computed for each partition. The whore source code is avaliable in ``code/example.py`` but the main function is the following:
+Here we are going to analyze how appropriate is to divide the top 200 universities, taking as the main criteria to do such division the position in the QS ranking of 2019. In order to evaluate such division trough the implementation of VIC, a set of 312 attributes related with the scientific production, as number of articles, citations, and areas of research of the last five years are going to be the predictors used in the ensembled classifiers. 
+We are going to divide the universities in two classes from a certain threshold. For example, if the threshold is 100, all the universities above 100 are going to be in one class and all the others are going to be in the second class. 
+Once such division is made, the VIC is implemented in the partition and the resulting ROC-AUC from k-fold cross-validation, as well as the standard deviation of the cross validation is plotted and reported in the following plot and table.
+This process is done for 50 cut point and the VIC is computed for each partition. The whole source code is available in ``code/example.py`` but the main function is the following:
 ```python
 for cut in r:
     dataset.loc[:,'cluster_id'].iloc[:(cut+1)]=-1
