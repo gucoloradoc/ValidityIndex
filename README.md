@@ -1,15 +1,17 @@
 # VIC Validity index 
 This repository describes the use and implementation of internal cluster validation by using ensemble supervised classifiers, as reported in [1]. Internal metrics provide a uselful method to evaluate how appropiate is the
-division expresed in a class atribbute **y** given or found (cluster), with a finite set of attributes **X** of the clustered instances, without comparing them against an external body of data.
+division expresed in a class atribbute **y** given or found (clustering), with a finite set of attributes **X** of the clustered instances, without comparing them against an external body of data.
 
 ```python
+from VIC_fun import VIC
 VIC(X,y,classifiers,kgroups,metric='roc_auc',n_jobs=n_jobs,**classifiers_parameters)
 ```
 
 The VIC function works by an ensemble usage of five supervised learning algorithms, ***Linear Discriminant Analysis***, ***Support vector machines***, ***Random Forest***, ***Naive Bayes*** and ***Bayesian Networks***. Those algorithms are implemented using the library *scikit-learn* in python and can be passed to the VIC function as a list of strings as follows:
 ```python
-classifiers=['svm','naive_bayes','LDA','RandomForest']
+classifiers=['svm','naive_bayes','LDA','RandomForest','BayesianNet']
 ```
+The BayesianNet classifier is implemented using the *python-weka-wrapper3*, thus to implement this classifier in your evaluation you need to properly configure the environment to use javabridge.
 In order to pass the hyperparameters to each of the classifiers, they shall be passed in a dict format with the following sintaxis:
 
 ```python
