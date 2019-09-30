@@ -37,7 +37,33 @@ Calling the function generates a tuple with three outputs, the maximum value of 
 max_value, ['mean_kfold_metric', 'sd_metric', 'classifier_name' ], matrix= VIC(X,y,...)
 ```
 ## Example: Best division for 200 top QS universities using VIC
+Here we are going to analyze how appropiate is to divide the top 200 universities, taking as the main criteria to do such division the position in the QS ranking of 2019. In order to evaluate such division trough the implementation of VIC, a set of 312 attributes related with the scientific production, as number of articles, citations, and areas of research of the last five years are going to be the predictors used in the ensembled classifiers. 
+We are going to divide the universities in two classes from a certain treshold. For example, if the threshold is 100, all the universities above 100 are going to be in one class and all the others are going to be in the second class. 
+Once such division is made, the VIC is implemented in the partition and the resulting ROC-AUC from kfold cross-validation, as well as the standard deviation of the cross validation is ploted and reported in the following plot and table.
+This process is done for 50 cut point and the VIC is computed for each partition. The whore source code is avaliable in ``code/example.py`` but the main function is the following:
+```python
+for cut in r:
+    dataset.loc[:,'cluster_id'].iloc[:(cut+1)]=-1
+    dataset.loc[:,'cluster_id'].iloc[(cut+1):]=1
+    X=dataset.iloc[:,1:-1].values
+    y=dataset.iloc[:,-1].values
+    missing_indexes= [(i[0],i[1])for i in np.argwhere(np.isnan(X))]
+    for mis in missing_indexes:
+        X[mis]=0 #Los unicos missing son numeros de documentos, por tanto quiere decir que no hay documentos registrados
 
+    np.random.seed(1000)
+    train_indexes=np.random.choice(range(200),200, replace=False)
+    X_train=X[train_indexes]
+    y_train=y[train_indexes]
+    if any([i=='BayesianNet' for i in classifiers]):
+        to_arffdump={'relation':'all_data', 'attributes':att_arff,'data':list(np.column_stack((X,np.array([str(j) for j in y]))))}
+        #to_arffdump={'relation':'all_data', 'attributes':att_arff,'data':list(X)}
+        with open('data/datatobayes.arff','w') as farff:
+            arff.dump(to_arffdump,farff)  
+    temp=[item for item in VIC(X_train,y_train,classifiers,kgroups,metric='roc_auc',n_jobs=n_jobs,**classifiers_parameters)]
+    temp.insert(0,cut)
+    results_VIC.append(temp)
+```
 
 ![ROC-AUC for example](images/VIC_results.png)
 
@@ -94,5 +120,9 @@ max_value, ['mean_kfold_metric', 'sd_metric', 'classifier_name' ], matrix= VIC(X
 |175 | 0.723557  |RandomForest|
 | 81 | 0.879493  |RandomForest|
 ---  --------  ------------
+
+## Results discussion
+
+
 
 [1] Rodríguez, J., Medina-Pérez, M. A., Gutierrez-Rodríguez, A. E., Monroy, R., & Terashima-Marín, H. (2018). Cluster validation using an ensemble of supervised classifiers. Knowledge-Based Systems, 145, 134–144. https://doi.org/10.1016/j.knosys.2018.01.010.
