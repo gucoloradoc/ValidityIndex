@@ -1,6 +1,6 @@
 # VIC Validity index 
 This repository describes the use and implementation of internal cluster validation by using ensemble supervised classifiers, as reported in [1]. Internal metrics provide a uselful method to evaluate how appropiate is the
-division expresed in a class atribbute **y** given or found (cluster), with a finite set of predictors **X** of the clustered instances, without comparing them against an external body of data.
+division expresed in a class atribbute **y** given or found (cluster), with a finite set of attributes **X** of the clustered instances, without comparing them against an external body of data.
 
 ```python
 VIC(X,y,classifiers,kgroups,metric='roc_auc',n_jobs=n_jobs,**classifiers_parameters)
