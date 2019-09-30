@@ -66,6 +66,7 @@ for cut in r:
 ```
 
 ![ROC-AUC for example](images/VIC_results.png)
+**Figure 1**. ROC-AUC mean of 10-kfold cross-validation. The error bars are the standard deviation of the kfold cross-validation. 
 
 |r   | max ROC-AUC   |Max Classifier|
 |--- | --------  |------------|
@@ -122,7 +123,7 @@ for cut in r:
 ---  --------  ------------
 
 ## Results discussion
-
+It is interesting to see how the top 200 universities can indeed be sepatared even when is about the top 200 universities in the world. We can see that acording to the VIC results, the top universities can be separated with the scientific production metrics as predictors. We can also see that the upper the dvision is made, the narrower is the standard deviation is made, wich means that using the scientific production metrics it becomes more accurate to predict the position of the university.
 
 
 [1] Rodríguez, J., Medina-Pérez, M. A., Gutierrez-Rodríguez, A. E., Monroy, R., & Terashima-Marín, H. (2018). Cluster validation using an ensemble of supervised classifiers. Knowledge-Based Systems, 145, 134–144. https://doi.org/10.1016/j.knosys.2018.01.010.
