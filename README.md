@@ -38,6 +38,13 @@ Calling the function generates a tuple with three outputs, the maximum value of 
 ```python
 max_value, ['mean_kfold_metric', 'sd_metric', 'classifier_name' ], matrix= VIC(X,y,...)
 ```
+### Threading tunning
+By default, the proccess of calculating VIC is done using 4 threads. This can be modify by changing the value of the "n_jobs" variable in line 18 of the "example.py" file:
+
+python
+n_jobs=4 #Multithread parameter
+
+Set the parameter to -1 to use all proccesors. Further information can be found in the documentation for the ``cross_val_score()`` function: [cross_val_score](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.cross_val_score.html)
 
 ## Example: Best division for 200 top QS universities using VIC
 Here we are going to analyze how appropriate is to divide the top 200 universities, taking as the main criteria to do such division the position in the QS ranking of 2019. In order to evaluate such division trough the implementation of VIC, a set of 312 attributes related with the scientific production, as number of articles, citations, and areas of research of the last five years are going to be the predictors used in the ensembled classifiers. 
