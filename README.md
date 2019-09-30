@@ -41,9 +41,9 @@ max_value, ['mean_kfold_metric', 'sd_metric', 'classifier_name' ], matrix= VIC(X
 ### Threading tunning
 By default, the proccess of calculating VIC is done using 4 threads. This can be modify by changing the value of the "n_jobs" variable in line 18 of the "example.py" file:
 
-python
+```python
 n_jobs=4 #Multithread parameter
-
+```
 Set the parameter to -1 to use all proccesors. Further information can be found in the documentation for the ``cross_val_score()`` function: [cross_val_score](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.cross_val_score.html)
 
 ## Example: Best division for 200 top QS universities using VIC
